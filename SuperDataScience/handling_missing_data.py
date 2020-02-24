@@ -55,7 +55,7 @@ y = label_encoder_y.fit_transform(y)
 # train_test_splitting
 from sklearn.model_selection import train_test_split
 
-X_train, X_test, Y_train, y_test = train_test_split(X, y, test_size = 0.3, random_state = 0)
+X_train, X_test, Y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
 
 # feature scaling
 """ performed in order to avoid overriding of smaller value by the bigger value
@@ -63,5 +63,11 @@ X_train, X_test, Y_train, y_test = train_test_split(X, y, test_size = 0.3, rando
  1. Standarization
  2. Normalization
  """
+ 
+from sklearn.preprocessing import StandardScaler
+ 
+scaler_X = StandardScaler()
+X_train = scaler_X.fit_transform(X_train)
+X_test = scaler_X.transform(X_test)
 
 
