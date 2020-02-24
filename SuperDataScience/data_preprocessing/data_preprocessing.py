@@ -7,6 +7,8 @@ Created on Mon Feb 24 11:55:26 2020
 """
 
 import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 from sklearn.preprocessing import Imputer
 
 dataset = pd.read_csv('Data.csv')
@@ -42,7 +44,8 @@ from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 label_encoder_X = LabelEncoder()
 X[:, 0] = label_encoder_X.fit_transform(X[:, 0])
 
-# one hot encoding X
+
+# one hot encoding X <-- dummy variables
 one_hot_encoder = OneHotEncoder(categorical_features = [0]) # indicated that the first column has to be one hot encoded
 X = one_hot_encoder.fit_transform(X).toarray()
 
