@@ -22,7 +22,7 @@ X[:, 1:3] = imputer.transform(X[:, 1:3])
 
 # Imputer is only suitable to fill NaNs of numerical values 
 
-"""
+""" this code does not work
 dataset_cat = pd.read_csv('Data_cat.csv')
 
 X_cat = dataset_cat.iloc[:, :-1].values
@@ -34,7 +34,7 @@ X[:, 0] = imputer_cat.transform(X[:, 0])
 
 ValueError: could not convert string to float: 'France'
 """
-# first, categorical values have to be transformed into numerical values and then one can fill all of the NaNs
+# first, categorical values have to be transformed into numerical values and then one can fill all of the NaNs if they exist
 
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 
@@ -50,4 +50,18 @@ X = one_hot_encoder.fit_transform(X).toarray()
 # labelling y --> only 2 values, so no need for OneHotEncoding
 label_encoder_y = LabelEncoder()
 y = label_encoder_y.fit_transform(y)
+
+
+# train_test_splitting
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, Y_train, y_test = train_test_split(X, y, test_size = 0.3, random_state = 0)
+
+# feature scaling
+""" performed in order to avoid overriding of smaller value by the bigger value
+# two ways:
+ 1. Standarization
+ 2. Normalization
+ """
+
 
