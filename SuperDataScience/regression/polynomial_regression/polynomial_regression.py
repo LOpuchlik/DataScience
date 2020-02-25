@@ -56,11 +56,11 @@ plt.title('Polynomial regression')
 plt.show()
 
 # predictions
-# predict salary for a person with 6.5 years of experience, I need to pass a 2D array, that's why years_of_experience is placed in double square brackets
-years_of_experience = 6.5
+# predict salary for a person with given years of experience, I need to pass a 2D array, that's why years_of_experience is placed in double square brackets
+years_of_experience = [[6.5]]
 
 # linear regression model
-lin_reg.predict([[years_of_experience]])
+print(lin_reg.predict(years_of_experience))
 
 # polynomial regression model
-lin_reg2.predict(poly_reg.fit_transform([[years_of_experience]]))
+print(lin_reg2.predict(poly_reg.fit_transform(years_of_experience)))
