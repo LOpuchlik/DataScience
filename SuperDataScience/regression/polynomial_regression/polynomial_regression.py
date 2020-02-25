@@ -60,7 +60,7 @@ plt.show()
 years_of_experience = [[6.5]]
 
 # linear regression model
-print(lin_reg.predict(years_of_experience))
+print(np.round(lin_reg.predict(years_of_experience), 2))
 
 # polynomial regression model
-print(lin_reg2.predict(poly_reg.fit_transform(years_of_experience)))
+print(np.round(lin_reg2.predict(poly_reg.fit_transform(years_of_experience)), 2))
