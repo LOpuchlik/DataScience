@@ -33,7 +33,8 @@ regressor = SVR(kernel = 'rbf')
 regressor.fit(X, y)
 
 # prediction
-# 6.5 has to be transformed by scaler and then again inversely rescaled
+# 6.5 has to be transformed by scaler to be at the same scale as paramerer y used for fitting
+# and then it has to be inversely rescaled to obtain the predicted result in the same scale as our real observstions
 y_pred = np.round(scaler_y.inverse_transform(regressor.predict(scaler_X.transform(np.array([[6.5]])))), 2)
 print(y_pred)
 
