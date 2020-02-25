@@ -29,14 +29,28 @@ lin_reg.fit(X,y)
 # second - polynomial regression model
 from sklearn.preprocessing import PolynomialFeatures
 
-poly_reg = PolynomialFeatures(degree=2)
+poly_reg = PolynomialFeatures(degree=4)
 X_poly = poly_reg.fit_transform(X)
 # result of polynomial regression is fitted into the linear regression model
 lin_reg2 = LinearRegression()
-lin_reg2.fit(X_poly,y)
+lin_reg2.fit(X_poly, y)
 
+# Visualisations
 
+# linear results
+plt.scatter(X, y, c='y')
+plt.plot(X, lin_reg.predict(X), c='g')
+plt.xlabel('Position level')
+plt.ylabel('Salary')
+plt.title('Linear regression')
+plt.show()
 
-# train test splitting
-
-"""X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)"""
+# polynomial results
+X_grid = np.arrange(min(X), max(X), 0.1)
+X_grid = X_grid.reshape((len(X_grid), 1))
+plt.scatter(X, y, c='y')
+plt.plot(X, lin_reg2.predict(poly_reg.fit_transform(X)), c='g')
+plt.xlabel('Position level')
+plt.ylabel('Salary')
+plt.title('Polynomial regression')
+plt.show()
