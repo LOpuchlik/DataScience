@@ -23,20 +23,20 @@ y = dataset.iloc[:, -1].values
 from sklearn.linear_model import LinearRegression
 
 lin_reg = LinearRegression()
-lin_reg.fit(X,y)
+lin_reg.fit(X, y)
 
 
 # second - polynomial regression model
 from sklearn.preprocessing import PolynomialFeatures
-
 poly_reg = PolynomialFeatures(degree=4)
 X_poly = poly_reg.fit_transform(X)
+poly_reg.fit(X_poly, y)
+
 # result of polynomial regression is fitted into the linear regression model
 lin_reg2 = LinearRegression()
 lin_reg2.fit(X_poly, y)
 
 # Visualisations
-
 # linear results
 plt.scatter(X, y, c='y')
 plt.plot(X, lin_reg.predict(X), c='g')
@@ -46,11 +46,16 @@ plt.title('Linear regression')
 plt.show()
 
 # polynomial results
-X_grid = np.arrange(min(X), max(X), 0.1)
-X_grid = X_grid.reshape((len(X_grid), 1))
+#X_grid = np.arrange(min(X), max(X), 0.1)
+#X_grid = X_grid.reshape((len(X_grid), 1))
 plt.scatter(X, y, c='y')
 plt.plot(X, lin_reg2.predict(poly_reg.fit_transform(X)), c='g')
 plt.xlabel('Position level')
 plt.ylabel('Salary')
 plt.title('Polynomial regression')
 plt.show()
+
+# predictions
+# predict salary for a person with 6.5 years of experience, I need to pass a 2D array, that's why years_of_experience is placed in double square brackets
+years_of_experience = 6.5
+lin_reg.predict([[years_of_experience]])
