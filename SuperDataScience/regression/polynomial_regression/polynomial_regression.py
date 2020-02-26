@@ -46,7 +46,7 @@ plt.title('Linear regression')
 plt.show()
 
 # polynomial results
-#X_grid = np.arrange(min(X), max(X), 0.1)
+#X_grid = np.arange(min(X), max(X), 0.1)
 #X_grid = X_grid.reshape((len(X_grid), 1))
 plt.scatter(X, y, c='y')
 plt.plot(X, lin_reg2.predict(poly_reg.fit_transform(X)), c='g')
