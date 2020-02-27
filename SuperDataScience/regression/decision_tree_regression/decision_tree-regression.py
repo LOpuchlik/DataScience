@@ -33,7 +33,7 @@ plt.title('Decision Tree Regression')
 plt.show()
 
 # decision tree regression showing non-continuity
-X_grid = np.arange(min(X), max(X), 0.1)
+X_grid = np.arange(min(X), max(X), 0.01)
 X_grid = X_grid.reshape((len(X_grid), 1))
 plt.scatter(X, y, c='y')
 plt.plot(X_grid, regressor.predict(X_grid), c='g')
