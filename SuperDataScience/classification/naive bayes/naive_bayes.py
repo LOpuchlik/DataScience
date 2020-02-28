@@ -52,13 +52,14 @@ print(conf_matrix)
 
 # Visualisations
 # train set results
-conf_matrix_visual(X_train, y_train)
+conf_matrix_visual(X_train, y_train, 'Trening_set_Naive_Bayes')
+
 
 # test set results
-conf_matrix_visual(X_test, y_test)
+conf_matrix_visual(X_test, y_test,'Test_set_Naive_Bayes')
 
 
-def conf_matrix_visual(X, y):
+def conf_matrix_visual(X, y, plot_name):
     from matplotlib.colors import ListedColormap
     X_set, y_set = X, y
     X1, X2 = np.meshgrid(np.arange(start = X_set[:, 0].min() - 1, stop = X_set[:, 0].max() + 1, step = 0.01),
@@ -74,4 +75,5 @@ def conf_matrix_visual(X, y):
     plt.xlabel('Age')
     plt.ylabel('Estimated Salary')
     plt.legend()
+    plt.savefig(plot_name) # saving a plot as png in current working directory - name of a file given as the third parameter
     plt.show()
