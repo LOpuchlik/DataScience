@@ -37,8 +37,9 @@ stop_pic = stop_pic.zoom(5) #with 250, I ended up running out of memory
 stop_pic = stop_pic.subsample(55) #mechanically, here it is adjusted to 32 instead of 320
 stop_button = Button(root, image = stop_pic, command = stop).pack(side = LEFT)
 
-volume_slider = Scale(root, from_=0, to=100, orient=HORIZONTAL, command = adjust_volume).pack(side = LEFT)
-
+volume_slider = Scale(root, from_=0, to=100, orient=HORIZONTAL, command = adjust_volume)
+volume_slider.set(20) # default volume when starting the programme
+volume_slider.pack(side=LEFT)
 
 
 
