@@ -56,12 +56,12 @@ def conf_matr_visual(X, y):
     X1, X2 = np.meshgrid(np.arange(start = X_set[:, 0].min() - 1, stop = X_set[:, 0].max() + 1, step = 0.01),
                          np.arange(start = X_set[:, 1].min() - 1, stop = X_set[:, 1].max() + 1, step = 0.01))
     plt.contourf(X1, X2, classifier.predict(np.array([X1.ravel(), X2.ravel()]).T).reshape(X1.shape),
-                 alpha = 0.5, cmap = ListedColormap(('red', 'blue')))
+                 alpha = 0.5, cmap = ListedColormap(('magenta', 'blue')))
     plt.xlim(X1.min(), X1.max())
     plt.ylim(X2.min(), X2.max())
     for i, j in enumerate(np.unique(y_set)):
         plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
-                    c = ListedColormap(('red', 'blue'))(i), label = j)
+                    c = ListedColormap(('magenta', 'blue'))(i), label = j)
     plt.title('Logistic regression - visualisation of confusion matrix output')
     plt.xlabel('Age')
     plt.ylabel('Estimated Salary')
