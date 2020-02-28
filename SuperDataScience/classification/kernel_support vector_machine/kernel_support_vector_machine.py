@@ -17,7 +17,7 @@ y = dataset.iloc[:, -1].values
 
 from sklearn.model_selection import train_test_split
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3, random_state = 0)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, random_state = 0)
 
 from sklearn.preprocessing import StandardScaler
 scaler_X = StandardScaler()
@@ -28,7 +28,7 @@ X_test = scaler_X.transform(X_test)
 # fitting
 from sklearn.svm import SVC
 
-classifier =SVC(kernel = 'rbf', random_state = 0)
+classifier = SVC(kernel = 'rbf', random_state = 0)
 classifier.fit(X_train, y_train)
 
 # prediction
@@ -62,7 +62,7 @@ def conf_matrix_visual(X, y):
     for i, j in enumerate(np.unique(y_set)):
         plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
                     c = ListedColormap(('red', 'green'))(i), label = j)
-    plt.title('Support vector machine')
+    plt.title('Rbf kernel support vector machine')
     plt.xlabel('Age')
     plt.ylabel('Estimated Salary')
     plt.legend()
