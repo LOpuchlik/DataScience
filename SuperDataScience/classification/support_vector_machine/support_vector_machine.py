@@ -28,7 +28,7 @@ X_test = scaler_X.transform(X_test)
 # fitting
 from sklearn.svm import SVC
 
-classifier =SVC(random_state = 0)
+classifier =SVC(kernel = 'linear', random_state = 0)
 classifier.fit(X_train, y_train)
 
 # prediction
