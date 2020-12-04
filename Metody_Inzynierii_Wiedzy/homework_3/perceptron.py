@@ -11,6 +11,7 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn import datasets
 from plotka import plot_decision_regions
+from plotka import plot_decision_regions_part
 from sklearn.metrics import accuracy_score
 
 
@@ -58,25 +59,38 @@ def main():
     X = iris.data[:, [2, 3]]
     y = iris.target
     X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.3, random_state=1, stratify=y)
+        X, y, test_size=0.33, random_state=1, stratify=y)
 
     y_train_perc_1 = y_train.copy()
     y_train_perc_2 = y_train.copy()
+    X_train_perc = X_train.copy()
 
-    y_train_perc_1[(y_train == 1) | (y_train == 2)] = - \
-        1   # label 1, 2 are negative one
-    # label 0 is positive one
-    y_train_perc_1[(y_train_perc_1 == 0)] == 1
+    y_train_perc_1[(y_train == 1) | (y_train == 2)] = -1
+    y_train_perc_1[(y_train == 0)] = 1
 
-    y_train_perc_2[(y_train == 1) | (y_train == 0)] = - \
-        1   # label 0 and 1 are negative one
-    # label 2 is positive one
-    y_train_perc_2[(y_train_perc_2 == 2)] == 1
+    y_train_perc_2[(y_train == 1) | (y_train == 0)] = -1
+    y_train_perc_2[(y_train == 2)] = 1
 
     perc1 = Perceptron(eta=0.1)
-    perc2 = Perceptron(eta=0.1, n_iter=26)
-    perc1.fit(X_train, y_train_perc_1)
-    perc2.fit(X_train, y_train_perc_2)
+    perc2 = Perceptron(eta=0.01, n_iter=173)
+    perc1.fit(X_train_perc, y_train_perc_1)
+    perc2.fit(X_train_perc, y_train_perc_2)
+
+    plot_decision_regions_part(
+        X=X_train_perc, y=y_train_perc_1, classifier=perc1)
+    plt.xlabel(r'sepal width (cm)')
+    plt.ylabel(r'petal length (cm)')
+    plt.legend(loc='upper left')
+    plt.title("Class division by first perceptron")
+    plt.show()
+
+    plot_decision_regions_part(
+        X=X_train_perc, y=y_train_perc_2, classifier=perc2)
+    plt.xlabel(r'sepal width (cm)')
+    plt.ylabel(r'petal length (cm)')
+    plt.legend(loc='upper left')
+    plt.title("Class division by second perceptron")
+    plt.show()
 
     clsif = Classifier(perc1, perc2)
 
@@ -96,10 +110,12 @@ def main():
 
     print(f'Overall accuracy:', round(accuracy_score(y_res, y_train), 3))
 
-    plot_decision_regions(X_train, y_train, classifier=clsif)
-    plt.xlabel(r'$x_1$')
-    plt.ylabel(r'$x_2$')
+    print(iris.feature_names)
+    plot_decision_regions(X=X_train_perc, y=y_train, classifier=clsif)
+    plt.xlabel(r'sepal width (cm)')
+    plt.ylabel(r'petal length (cm)')
     plt.legend(loc='upper left')
+    plt.title("Overall class division by multiperceptron model")
     plt.show()
 
 
