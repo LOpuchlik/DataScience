@@ -4,6 +4,9 @@ import streamlit as st
 from pandas_profiling import ProfileReport
 from streamlit_pandas_profiling import st_profile_report
 
+st.markdown('<style>h1{color: red;}</style>', unsafe_allow_html=True)
+st.markdown('<style>h3{color: green;}</style>', unsafe_allow_html=True)
+st.markdown('<style>p{color: navyblue;}</style>', unsafe_allow_html=True)
 
 path = ''
 # Web App Title
